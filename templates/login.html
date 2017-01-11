@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <form id="login-form" action="/login" method="post"> <!--action="/login"을 하면 /login페이지로 데이터를 보내준다-->
+        <input type="text" id="email" name="email">
+        <input type="password", id="password" name="password">
+        <input type="submit",id="submit-button">
+    </form>
+{% endblock %}
+
