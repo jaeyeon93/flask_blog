@@ -17,7 +17,9 @@ class User(object):
         data = Database.find_one("users",{"email": email})
         if data is not None:
             return cls(**data)
+
         return None
+
     @classmethod
     def get_by_id(cls, _id):
         data = Database.find_one("users",{"_id": _id})
@@ -32,11 +34,11 @@ class User(object):
 
     @classmethod
     # 만약에 user클래스 이름을 바꾸면 클래스이름을 바꿀 필요가 없기때문에 cls를 사용한다
-    def register(cls,email, password):
+    def register(cls, email, password):
         user = cls.get_by_email(email)
         if user is None:
             # User does not exist, so we can create it
-            new_user = User(email,password)
+            new_user = User(email, password)
             new_user.save_to_mongo()
             session['email'] = email
             return True
@@ -51,7 +53,6 @@ class User(object):
     @staticmethod
     def logout():
         session['email'] = None
-
 
     def get_blogs(self):
         return Blog.find_by_author_id(self._id)
